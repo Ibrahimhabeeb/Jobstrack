@@ -1,7 +1,7 @@
 FROM node:18 AS nodeapi-build
 WORKDIR /usr/src/app
-COPY ./ ./backend/
-RUN cd backend && npm install
+COPY ./ ./
+
 RUN npm install --production
 
 # Copy the rest of the application code to the container
