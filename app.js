@@ -7,6 +7,11 @@ const path = require('path')
 const helmet = require('helmet');
 
 const xss = require('xss-clean');
+const fs = require('fs');
+
+// Read MongoDB URI from Docker secret
+
+
 
 
 
@@ -47,7 +52,7 @@ const port = process.env.PORT || 3000;
 
 const start = async () => {
   try {
-    await connectDB(process.env.MONGO_URI);
+    await connectDB(fs.readFileSync('/run/secrets/mongo_uri', 'utf-8').trim());
     app.listen(port, () =>
       console.log(`Server is listening on port ${port}...`)
     );

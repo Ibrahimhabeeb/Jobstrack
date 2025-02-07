@@ -11,10 +11,19 @@ services:
     command: npm start
     secrets:
       - mongo_uri
+      - jwt_secret
+      - jwt_lifetime
     environment:
       NODE_ENV: production
+      MONGO_URI_FILE: /run/secrets/mongo_uri
+      JWT_SECRET_FILE: /run/secrets/jwt_secret
+      JWT_LIFETIME_FILE: /run/secrets/jwt_lifetime
 secrets:
   mongo_uri:
+    external: true
+  jwt_secret:
+    external: true
+  jwt_lifetime:
     external: true
 
   frontend:
